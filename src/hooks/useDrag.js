@@ -5,7 +5,7 @@ import { DragContext } from '../contexts/DragContext';
 const useDrag = () => {
     const { setDraggedItem } = useContext(DragContext);
 
-    const handleDragStart = (item) => {
+    const handleDragStart = (e, item) => {
         setDraggedItem(item);
         // Autres actions lors du début du drag
     };
