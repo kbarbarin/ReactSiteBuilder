@@ -1,4 +1,4 @@
-.component-list {
+.draggableItems {
     width: 20%;
     background-color: #f0f0f0;
     overflow-y: auto; /* Pour le défilement si beaucoup de composants */

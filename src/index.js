@@ -1,15 +1,13 @@
-// index.js ou index.tsx
-
+// src/index.js
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App';
 
-const rootElement = document.getElementById('root');
-
-const root = createRoot(rootElement);
+const container = document.getElementById('root');
+const root = createRoot(container);
 
 root.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>
+    <React.StrictMode>
+        <App />
+    </React.StrictMode>
 );

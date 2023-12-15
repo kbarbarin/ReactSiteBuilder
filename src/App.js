@@ -1,14 +1,20 @@
+// src/App.js
 import React from 'react';
-import ComponentList from './components/editor/componentList/ComponentList';
-import ConstructionArea from './components/editor/constructionArea/ConstructionArea';
-import './styles/App.css'; // Assurez-vous d'avoir ce fichier CSS
+import { DragProvider } from './contexts/DragContext';
+import DraggableItems from './components/editor/draggableItems/DraggableItems';
+import DropZone from './components/editor/dropZone/DropZone';
+
+import './styles/App.css'
 
 const App = () => {
+  const items = ["Button", "Input"]
     return (
-        <div className="app-container">
-            <ComponentList />
-            <ConstructionArea />
-        </div>
+        <DragProvider>
+            <div className='app-container'>
+                <DraggableItems items={items} />
+                <DropZone />
+            </div>
+        </DragProvider>
     );
 };
 

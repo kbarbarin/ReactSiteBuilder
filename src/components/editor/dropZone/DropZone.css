@@ -1,0 +1,35 @@
+/* src/components/DropZone.css */
+.dropZone {
+    flex: 1;
+    min-height: 500px; /* Hauteur minimale pour la visibilité */
+    border: 2px dashed #ccc; /* Bordure en pointillés pour indiquer la zone de dépôt */
+    border-radius: 8px;
+    padding: 20px;
+    margin: 20px;
+    background-color: #f8f8f8;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: auto; /* Permet le défilement si le contenu dépasse */
+}
+
+.dropZone:empty:before {
+    content: "Glissez et déposez des éléments ici";
+    color: #999;
+    text-align: center;
+}
+
+.dropZone:not(:empty) {
+    border-style: solid; /* Changez le style de bordure lorsque des éléments sont présents */
+    background-color: #fff;
+}
+
+.dropZone-element {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background-color: #eee;
+}
