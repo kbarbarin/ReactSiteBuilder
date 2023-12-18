@@ -3,6 +3,7 @@ import React, { useContext } from 'react';
 
 import { DragContext } from '../../../contexts/DragContext';
 import useDrop from '../../../hooks/useDrop';
+import useDrag from '../../../hooks/useDrag';
 
 import Button from '../../common/Button/Button'
 import Slider from '../../common/Slider/Slider'
@@ -18,16 +19,16 @@ const componentMap = {
 
 const DropZone = () => {
     const { handleDrop, handleDragOver } = useDrop();
+    const { handleDragStart } = useDrag();
     const { itemList } = useContext(DragContext);
-    console.log(itemList);
 
     return (
-        <div className='dropZone' onDrop={handleDrop} onDragOver={handleDragOver}>
+        <div className='dropZone' onDrop={handleDrop} onDragOver={(e) => handleDragOver(e)}>
             {itemList.length > 0 && (
                 itemList.map((item, index) => {
                     const Component = componentMap[item.type];
                     return (
-                        <div key={index}>
+                        <div key={index} draggable onDragStart={(e) => handleDragStart(e, item, 'dropzone')}>
                             <Component {...item.props} />
                         </div>
                     );
