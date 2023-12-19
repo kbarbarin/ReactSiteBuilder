@@ -1,7 +1,7 @@
 // src/App.js
-import React, { useContext } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import { DragContext, DragProvider } from './contexts/DragContext';
-import DraggableItems from './components/editor/draggableItems/DraggableItems';
+import DraggableZone from './components/editor/draggableZone/DraggableZone';
 import DropZone from './components/editor/dropZone/DropZone';
 
 import './styles/App.css'
@@ -37,11 +37,19 @@ const items = [
 const App = () => {
 
   const DragContent = () => {
-    const { draggedItem } = useContext(DragContext)
+    const { draggedItem, sourceItem } = useContext(DragContext)
+    const [showDelete, setShowDelete] = useState(false);
+
+    useEffect(() => {
+      if (draggedItem && sourceItem === "dropzone")
+        setShowDelete(true)
+        else if (showDelete)
+          setShowDelete(false)
+    }, [draggedItem, sourceItem])
 
     return (
       <div className='app-container'>
-        {draggedItem ? <DeleteZone /> : <DraggableItems items={items} />}
+        {showDelete ? <DeleteZone /> : <DraggableZone items={items} />}
         <DropZone />
       </div>
     )

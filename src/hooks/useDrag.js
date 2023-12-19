@@ -3,11 +3,12 @@ import { useContext } from 'react';
 import { DragContext } from '../contexts/DragContext';
 
 const useDrag = () => {
-    const { setDraggedItem, setSource } = useContext(DragContext);
+    const { setDraggedItem, setSourceItem, setIndexItem } = useContext(DragContext);
 
-    const handleDragStart = (e, item, source) => {
+    const handleDragStart = (e, item, source, index) => {
         setDraggedItem(item);
-        setSource(source);
+        setSourceItem(source);
+        setIndexItem(index);
         // Autres actions lors du début du drag
     };
 

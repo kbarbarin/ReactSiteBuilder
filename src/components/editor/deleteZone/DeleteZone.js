@@ -1,22 +1,19 @@
 // src/components/DeleteZone.js
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 import { DragContext } from '../../../contexts/DragContext';
 import './DeleteZone.css'
+import useDrop from '../../../hooks/useDrop';
 
 const DeleteZone = () => {
     const { draggedItem, setItemList } = useContext(DragContext);
+    const { handleDragOver, handleDrop } = useDrop();
 
-    const handleDrop = (e) => {
-        e.preventDefault();
-        setItemList(currentItems => currentItems.filter(item => item !== draggedItem));
-    };
-
-    const handleDragOver = (e) => {
-        e.preventDefault();
-    };
+    useEffect(() => {
+        console.log(draggedItem);
+    })
 
     return (
-        <div onDrop={handleDrop} onDragOver={handleDragOver} className="deleteZone">
+        <div onDrop={(e) => handleDrop(e, 'deleteZone')} onDragOver={handleDragOver} className="deleteZone">
             Drag here to delete
         </div>
     );

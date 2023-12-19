@@ -3,22 +3,23 @@ import { useContext } from 'react';
 import { DragContext } from '../contexts/DragContext';
 
 const useDrop = () => {
-    const { draggedItem, setDraggedItem, itemList, setItemList, source } = useContext(DragContext);
+    const { draggedItem, setDraggedItem, itemList, setItemList, sourceItem, indexItem, setIndexItem } = useContext(DragContext);
 
     const handleDragOver = e => {
         e.preventDefault();
     };
 
-    const handleDrop = (e, dropZone, index) => {
+    const handleDrop = (e, dropZone) => {
         e.preventDefault();
-        console.log(draggedItem);
-        if (source === 'dropzone' && dropZone !== 'dropzone') {
-            setItemList(itemList.filter((_, i) => i !== index));
+        if (sourceItem === 'dropzone' && dropZone !== 'deletezone') {
+            setItemList(itemList.filter((_, i) => i !== indexItem));
             setDraggedItem(null); // Réinitialisez l'élément déplacé
+            setIndexItem(null);
             return;
         }
         // Ajoutez l'élément déplacé à itemList ou traitez-le comme nécessaire
         setItemList([...itemList, draggedItem]);
+        setIndexItem(null);
         setDraggedItem(null); // Réinitialisez l'élément déplacé
     };
 

@@ -5,11 +5,12 @@ export const DragContext = createContext();
 
 export const DragProvider = ({ children }) => {
     const [draggedItem, setDraggedItem] = useState(null);
-    const [source, setSource] = useState(null);
+    const [sourceItem, setSourceItem] = useState(null);
+    const [indexItem, setIndexItem] = useState(null);
     const [itemList, setItemList] = useState([]);
 
     return (
-        <DragContext.Provider value={{ draggedItem, setDraggedItem, itemList, setItemList, source, setSource }}>
+        <DragContext.Provider value={{ draggedItem, setDraggedItem, itemList, setItemList, sourceItem, setSourceItem, indexItem, setIndexItem }}>
             {children}
         </DragContext.Provider>
     );

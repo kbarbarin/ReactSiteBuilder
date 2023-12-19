@@ -28,7 +28,7 @@ const DropZone = () => {
                 itemList.map((item, index) => {
                     const Component = componentMap[item.type];
                     return (
-                        <div key={index} draggable onDragStart={(e) => handleDragStart(e, item, 'dropzone')}>
+                        <div key={index} draggable onDragStart={(e) => handleDragStart(e, item, 'dropzone', index)}>
                             <Component {...item.props} />
                         </div>
                     );
