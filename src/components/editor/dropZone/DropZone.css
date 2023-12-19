@@ -1,8 +1,10 @@
 /* src/components/DropZone.css */
 .dropZone {
     flex: 1;
-    min-height: 500px; /* Hauteur minimale pour la visibilité */
-    border: 2px dashed #ccc; /* Bordure en pointillés pour indiquer la zone de dépôt */
+    min-height: 500px;
+    /* Hauteur minimale pour la visibilité */
+    border: 2px dashed #ccc;
+    /* Bordure en pointillés pour indiquer la zone de dépôt */
     border-radius: 8px;
     padding: 20px;
     margin: 20px;
@@ -12,7 +14,8 @@
     align-items: center;
     justify-content: center;
     position: relative;
-    overflow: auto; /* Permet le défilement si le contenu dépasse */
+    overflow: auto;
+    /* Permet le défilement si le contenu dépasse */
 }
 
 .dropZone:empty:before {
@@ -22,8 +25,14 @@
 }
 
 .dropZone:not(:empty) {
-    border-style: solid; /* Changez le style de bordure lorsque des éléments sont présents */
+    border-style: solid;
+    /* Changez le style de bordure lorsque des éléments sont présents */
     background-color: #fff;
+    display: grid;
+    grid-template-columns: repeat(12, 1fr);
+    grid-template-rows: repeat(12, 1fr);
+    grid-column-gap: 0px;
+    grid-row-gap: 0px;
 }
 
 .dropZone-element {
@@ -31,5 +40,5 @@
     padding: 10px;
     border: 1px solid #ddd;
     border-radius: 4px;
-    background-color: #eee;
+    background-color: red;
 }
