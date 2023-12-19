@@ -11,16 +11,19 @@ const useDrop = () => {
 
     const handleDrop = (e, dropZone) => {
         e.preventDefault();
-        if (sourceItem === 'dropzone' && dropZone !== 'deletezone') {
+        if (sourceItem === 'dropzone' && dropZone === 'deletezone') {
             setItemList(itemList.filter((_, i) => i !== indexItem));
             setDraggedItem(null); // Réinitialisez l'élément déplacé
             setIndexItem(null);
-            return;
+        } else if (sourceItem === 'draggableZone' && dropZone === 'dropzone') {
+            // Ajoutez l'élément déplacé à itemList ou traitez-le comme nécessaire
+            setItemList([...itemList, draggedItem]);
+            setIndexItem(null);
+            setDraggedItem(null); // Réinitialisez l'élément déplacé
+        } else {
+            setIndexItem(null);
+            setDraggedItem(null); // Réinitialisez l'élément déplacé
         }
-        // Ajoutez l'élément déplacé à itemList ou traitez-le comme nécessaire
-        setItemList([...itemList, draggedItem]);
-        setIndexItem(null);
-        setDraggedItem(null); // Réinitialisez l'élément déplacé
     };
 
     return { handleDragOver, handleDrop };

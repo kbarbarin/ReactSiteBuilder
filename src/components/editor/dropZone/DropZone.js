@@ -23,7 +23,7 @@ const DropZone = () => {
     const { itemList } = useContext(DragContext);
 
     return (
-        <div className='dropZone' onDrop={handleDrop} onDragOver={(e) => handleDragOver(e)}>
+        <div className='dropZone' onDrop={(e) => handleDrop(e, 'dropzone')} onDragOver={(e) => handleDragOver(e)}>
             {itemList.length > 0 && (
                 itemList.map((item, index) => {
                     const Component = componentMap[item.type];

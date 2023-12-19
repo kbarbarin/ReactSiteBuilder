@@ -1,8 +1,11 @@
 /* Dans votre fichier CSS pour DeleteZone */
 .deleteZone {
+    width: 20%;
     border: 2px dashed red;
-    padding: 20px;
-    text-align: center;
-    margin: 10px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     background-color: #ffe0e0;
+    margin: 20px 0px 20px 20px;
 }
