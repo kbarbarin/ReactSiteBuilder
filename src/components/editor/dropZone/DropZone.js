@@ -6,6 +6,8 @@ import useDrop from '../../../hooks/useDrop';
 import useDrag from '../../../hooks/useDrag';
 import useMouseEvents from '../../../hooks/useMouseEvents';
 
+import Resizable from '../Resizable/Resizable';
+
 import Button from '../../common/Button/Button'
 import Slider from '../../common/Slider/Slider'
 import ProgressBar from '../../common/ProgressBar/ProgressBar'
@@ -35,9 +37,11 @@ const DropZone = () => {
                         // Ajoutez d'autres styles si nécessaire
                     };
                     return (
-                        <div key={index} style={style} className='dropZone-element' onMouseDown={handleMouseDown} draggable onDragStart={(e) => handleDragStart(e, item, 'dropzone', index)}>
-                            <Component {...item.props} />
-                        </div>
+                        <Resizable>
+                            <div key={index} style={style} className='dropZone-element' draggable onDragStart={(e) => handleDragStart(e, item, 'dropzone', index)}>
+                                <Component {...item.props} />
+                            </div>
+                        </Resizable>
                     );
                 })
             )}

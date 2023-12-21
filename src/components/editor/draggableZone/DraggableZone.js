@@ -23,7 +23,7 @@ const DraggableZone = ({ items }) => {
             {items.map((item, index) => {
                 const Component = componentMap[item.type];
                 return (
-                    <div key={index} draggable onDragStart={(e) => handleDragStart(e, item, 'draggableZone', index)}>
+                    <div className='draggableZone-element' key={index} draggable onDragStart={(e) => handleDragStart(e, item, 'draggableZone', index)}>
                         <Component {...item.props} />
                     </div>
                 );

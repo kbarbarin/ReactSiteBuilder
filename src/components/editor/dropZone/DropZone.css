@@ -6,7 +6,7 @@
     border: 2px dashed #ccc;
     /* Bordure en pointillés pour indiquer la zone de dépôt */
     border-radius: 8px;
-    padding: 20px;
+    padding: 10px;
     margin: 20px;
     background-color: #f8f8f8;
     display: flex;
@@ -35,6 +35,39 @@
     grid-row-gap: 0px;
 }
 
+.dropZone-resizable {
+    position: absolute;
+    top: 0;
+    left: 0; /* Ajuster en fonction de la largeur de la zone de coin */
+    border: 1px solid red;
+    /* cursor: n-resize; */
+}
+
+.dropZone-resizable::before, .dropZone-resizable::after {
+    content: '';
+    position: absolute;
+    width: 10px;  /* Largeur de la zone de redimensionnement */
+    height: 10px; /* Hauteur de la zone de redimensionnement */
+}
+
+/* Coin en haut à gauche */
+.dropZone-resizable::before {
+    top: 0;
+    left: 0;
+    cursor: nw-resize;
+}
+
+/* Coin en bas à droite */
+.dropZone-resizable::after {
+    bottom: 0;
+    right: 0;
+    cursor: se-resize;
+}
+
 .dropZone-element {
-    cursor: nwse-resize;
+    cursor: grab;
+}
+
+.dropZone-element:active {
+    cursor: grabbing;
 }

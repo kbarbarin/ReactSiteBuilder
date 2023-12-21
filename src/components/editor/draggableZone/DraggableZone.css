@@ -4,3 +4,11 @@
     overflow-y: auto; /* Pour le défilement si beaucoup de composants */
     padding: 10px;
 }
+
+.draggableZone-element {
+    cursor: grab;
+}
+
+.draggableZone-element:active {
+    cursor: grabbing;
+}
