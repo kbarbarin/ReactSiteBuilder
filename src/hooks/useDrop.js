@@ -37,7 +37,6 @@ const useDrop = () => {
 
             const updatedItemList = itemList.map((item, idx) => {
                 if (idx === indexItem) {
-                    // Créez une copie de l'objet item et mettez à jour les propriétés nécessaires
                     return { ...item, gridRow: gridRow, gridColumn: gridColumn };
                 }
                 return item;
