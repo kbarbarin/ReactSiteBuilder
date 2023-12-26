@@ -1,0 +1,45 @@
+{
+    "projectName": "MonSiteReact",
+    "page": {
+        "pageName": "Accueil",
+        "path": "/",
+        "components": [
+            {
+                "type": "Header",
+                "style": {
+
+                },
+                "props": {
+                    "navigation": [
+                        {
+                            "name": "Accueil",
+                            "link": "/"
+                        },
+                        {
+                            "name": "À propos",
+                            "link": "/about"
+                        },
+                        {
+                            "name": "Services",
+                            "link": "/services"
+                        }
+                    ],
+                    "logo": "logo.png"
+                }
+            },
+            {
+                "type": "Section",
+                "props": {
+                    "title": "Bienvenue sur MonSiteReact",
+                    "content": "Contenu de la section d'accueil ici."
+                }
+            },
+            {
+                "type": "Footer",
+                "props": {
+                    "copyRightText": "© 2023 MonSiteReact. Tous droits réservés."
+                }
+            }
+        ]
+    }
+}

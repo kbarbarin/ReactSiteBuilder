@@ -1,5 +1,5 @@
 // src/components/DropZone.js
-import React, { useContext } from 'react';
+import React, { useContext, useEffect } from 'react';
 
 import { DragContext } from '../../../contexts/DragContext';
 import useDrop from '../../../hooks/useDrop';
@@ -13,6 +13,7 @@ import Slider from '../../common/Slider/Slider'
 import ProgressBar from '../../common/ProgressBar/ProgressBar'
 
 import './DropZone.css'
+import main from '../../../generator';
 
 const componentMap = {
     Button,
@@ -27,7 +28,7 @@ const DropZone = () => {
     const { itemList } = useContext(DragContext);
 
     return (
-        <div className='dropZone' onMouseMove={handleMouseMove} onMouseUp={handleMouseUp} onDrop={(e) => handleDrop(e, 'dropzone')} onDragOver={(e) => handleDragOver(e)}>
+        <div className='dropZone' onDrop={(e) => handleDrop(e, 'dropzone')} onDragOver={(e) => handleDragOver(e)}>
             {itemList.length > 0 && (
                 itemList.map((item, index) => {
                     const Component = componentMap[item.type];
@@ -37,11 +38,11 @@ const DropZone = () => {
                         // Ajoutez d'autres styles si nécessaire
                     };
                     return (
-                        <Resizable>
-                            <div key={index} style={style} className='dropZone-element' draggable onDragStart={(e) => handleDragStart(e, item, 'dropzone', index)}>
+                        // <Resizable key={index} style={style}>
+                            <div style={style} className='dropZone-element' draggable onDragStart={(e) => handleDragStart(e, item, 'dropzone', index)}>
                                 <Component {...item.props} />
                             </div>
-                        </Resizable>
+                        // </Resizable>
                     );
                 })
             )}

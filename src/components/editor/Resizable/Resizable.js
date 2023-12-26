@@ -3,10 +3,12 @@ import useMouseEvents from '../../../hooks/useMouseEvents';
 
 const BORDER_SENSITIVITY = 10; // pixels près du bord pour activer le redimensionnement
 
-const Resizable = ({ children }) => {
-    const [size, setSize] = useState({ width: 200, height: 200 });
+const Resizable = ({ children, width, height }) => {
+    const [size, setSize] = useState({ width, height});
     const resizableRef = useRef(null);
-    const { handleMouseDown, handleMouseUp } = useMouseEvents();
+    const [isResizing, setIsResizing] = useState(false);
+    const [startPosition, setStartPosition] = useState({ x: 0, y: 0 });
+    // const { handleMouseDown, handleMouseUp } = useMouseEvents();
 
     const handleMouseOver = (e) => {
         if (isMouseOnBorder(e)) {
@@ -35,6 +37,19 @@ const Resizable = ({ children }) => {
                 e.currentTarget.style.cursor = 'default';
             }
         }
+        if (isResizing) {
+            const delta = {
+                x: e.clientX - startPosition.x,
+                y: e.clientY - startPosition.y
+            };
+
+            setSize(prevSize => ({
+                width: Math.max(prevSize.width + delta.x, 50), // minWidth est la largeur minimale que vous voulez permettre
+                height: Math.max(prevSize.height + delta.y, 50) // minHeight est la hauteur minimale
+            }));
+
+            setStartPosition({ x: e.clientX, y: e.clientY });
+        }
     };
 
     const isMouseOnBorder = (e) => {
@@ -54,6 +69,15 @@ const Resizable = ({ children }) => {
 
             return { nearLeftEdge, nearRightEdge, nearTopEdge, nearBottomEdge };
         }
+    };
+
+    const handleMouseDown = (e) => {
+        setIsResizing(true);
+        setStartPosition({ x: e.clientX, y: e.clientY });
+    };
+
+    const handleMouseUp = () => {
+        setIsResizing(false);
     };
 
     useEffect(() => {
