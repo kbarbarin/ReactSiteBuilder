@@ -39,7 +39,7 @@ const DropZone = () => {
                     };
                     return (
                         // <Resizable key={index} style={style}>
-                            <div style={style} className='dropZone-element' draggable onDragStart={(e) => handleDragStart(e, item, 'dropzone', index)}>
+                            <div key={index} style={style} className='dropZone-element' draggable onDragStart={(e) => handleDragStart(e, item, 'dropzone', index)}>
                                 <Component {...item.props} />
                             </div>
                         // </Resizable>

@@ -1,7 +1,22 @@
+import { useContext, useEffect, useState } from 'react';
 import JSZip from 'jszip';
 
-export default function main() {
+import { index, manifest } from './templates/publicFolder';
+import { packages } from './templates/package';
+import { App, jsIndex, cssIndex } from './templates/src';
+import { button } from './templates/common';
+import { DragContext } from '../contexts/DragContext';
+
+export default function Main() {
+    const [appContain, setAppContain] = useState("<div>Hello World</div>");
+    const { itemList } = useContext(DragContext);
     const zip = new JSZip();
+
+    useEffect(() => {
+        if (itemList) {
+            
+        }
+    }, [itemList])
 
     function downloadBlob(blob, filename) {
         const url = window.URL.createObjectURL(blob); // Crée un URL pour le Blob
@@ -15,13 +30,25 @@ export default function main() {
     }
 
     // Créer des fichiers
-    zip.file("package.json", `{ "name": "my-react-app", "version": "1.0.0", "dependencies": { "react": "^17.0.2", "react-dom": "^17.0.2" } }`);
-    zip.file("src/App.js", `import React from 'react'; function App() { return <div>Hello World</div>; } export default App;`);
-    zip.file("src/index.js", `import React from 'react'; import ReactDOM from 'react-dom'; import App from './App'; ReactDOM.render(<App />, document.getElementById('root'));`);
+    zip.file("package.json", packages);
 
-    // Créer une structure de dossier
+    const publicFolder = zip.folder('public');
+
+    publicFolder.file('index.html', index);
+    publicFolder.file('manifest.json', manifest);
+
     const srcFolder = zip.folder("src");
-    srcFolder.file("index.css", `body { margin: 0; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen', 'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue', sans-serif; }`);
+
+    srcFolder.file("App.js", App(appContain));
+    srcFolder.file("index.js", jsIndex);
+
+    const styleFolder = zip.folder("src/style");
+
+    styleFolder.file("index.css", cssIndex);
+
+    const commonFolder = zip.folder("src/componant");
+
+    commonFolder.file("button.jsx", button);
 
     zip.generateAsync({ type: "blob" }).then((content) => {
         downloadBlob(content, "my-react-app.zip");

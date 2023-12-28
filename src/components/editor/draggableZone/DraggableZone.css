@@ -1,4 +1,7 @@
 .draggableZone {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
     width: 20%;
     background-color: #f0f0f0;
     overflow-y: auto; /* Pour le défilement si beaucoup de composants */
@@ -11,4 +14,10 @@
 
 .draggableZone-element:active {
     cursor: grabbing;
+}
+
+.draggableZone-export {
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
