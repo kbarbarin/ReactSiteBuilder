@@ -1,9 +1,10 @@
-const App = (props) => { 
+const App = (appContain, importContain) => { 
     return(`import React from 'react';
+${importContain}
 import './style/index.css'
 
 function App() {
-     return ${props?.value};
+     return ${appContain};
 } 
 
 export default App;`)

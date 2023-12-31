@@ -13,8 +13,8 @@ const useDrop = () => {
         const dropZoneRect = e.currentTarget.getBoundingClientRect();
             const x = e.clientX - dropZoneRect.left; // Coordonnée X relative à la DropZone
             const y = e.clientY - dropZoneRect.top;  // Coordonnée Y relative à la DropZone
-            const cellWidth = dropZoneRect.width / 12;
-            const cellHeight = dropZoneRect.height / 12;
+            const cellWidth = dropZoneRect.width / 30;
+            const cellHeight = dropZoneRect.height / 30;
             const gridColumn = Math.ceil(x / cellWidth);
             const gridRow = Math.ceil(y / cellHeight);
             return {gridColumn, gridRow}

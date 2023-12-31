@@ -8,15 +8,20 @@ import useMouseEvents from '../../../hooks/useMouseEvents';
 
 import Resizable from '../Resizable/Resizable';
 
-import Button from '../../common/Button/Button'
-import Slider from '../../common/Slider/Slider'
-import ProgressBar from '../../common/ProgressBar/ProgressBar'
+import Button from '../../common/Button/Button';
+import Card from '../../common/Card/Card';
+import InputField from '../../common/InputField/InputField';
+import Modal from '../../common/Modal/Modal';
+import Slider from '../../common/Slider/Slider';
+import ProgressBar from '../../common/ProgressBar/ProgressBar';
 
 import './DropZone.css'
-import main from '../../../generator';
 
 const componentMap = {
     Button,
+    Card,
+    InputField,
+    Modal,
     Slider,
     ProgressBar
 };

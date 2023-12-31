@@ -1,21 +1,30 @@
 // src/components/DraggableItem.js
-import React from 'react';
+import React, {useContext} from 'react';
 import useDrag from '../../../hooks/useDrag';
+import { DragContext } from '../../../contexts/DragContext';
 
-import Button from '../../common/Button/Button'
-import Slider from '../../common/Slider/Slider'
-import ProgressBar from '../../common/ProgressBar/ProgressBar'
 
-import './DraggableZone.css'
+import Button from '../../common/Button/Button';
+import Card from '../../common/Card/Card';
+import InputField from '../../common/InputField/InputField';
+import Modal from '../../common/Modal/Modal';
+import Slider from '../../common/Slider/Slider';
+import ProgressBar from '../../common/ProgressBar/ProgressBar';
+
+import './DraggableZone.css';
 import main from '../../../generator';
 
 const componentMap = {
     Button,
+    Card,
+    InputField,
+    Modal,
     Slider,
     ProgressBar
 };
 
 const DraggableZone = ({ items }) => {
+    const { itemList } = useContext(DragContext);
     const { handleDragStart } = useDrag();
 
     return (
@@ -30,7 +39,7 @@ const DraggableZone = ({ items }) => {
                     );
                 })}
             </div>
-            <Button className='draggableZone-export' onClick={main}>Exporter</Button>
+            <Button className='draggableZone-export' styleTitle={{fontSize: '1.2rem'}} onClick={() => main(itemList)}>Exporter</Button>
         </div>
     );
 };

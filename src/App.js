@@ -14,6 +14,22 @@ const items = [
     }
   },
   {
+    type: 'Card', props: {
+      children: <p>Card</p>,
+    }
+  },
+  {
+    type: 'InputField', props: {
+      placeholder: "InputField",
+    }
+  },
+  {
+    type: 'Modal', props: {
+      title: 'Modal',
+      children: <p>Modal content</p>
+    }
+  },
+  {
     type: 'ProgressBar', props: {
       percentage: 50,
       duration: 2,
@@ -43,8 +59,8 @@ const App = () => {
     useEffect(() => {
       if (draggedItem && sourceItem === "dropzone")
         setShowDelete(true)
-        else if (showDelete)
-          setShowDelete(false)
+      else if (showDelete)
+        setShowDelete(false)
     }, [draggedItem, sourceItem])
 
     return (
