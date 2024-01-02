@@ -1,5 +1,6 @@
 .input-field {
-    margin-bottom: 15px;
+    flex: 1;
+    /* margin-bottom: 15px; */
 }
 
 .input-field label {

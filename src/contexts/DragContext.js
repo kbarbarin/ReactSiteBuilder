@@ -10,7 +10,13 @@ export const DragProvider = ({ children }) => {
     const [itemList, setItemList] = useState([]);
 
     return (
-        <DragContext.Provider value={{ draggedItem, setDraggedItem, itemList, setItemList, sourceItem, setSourceItem, indexItem, setIndexItem }}>
+        <DragContext.Provider
+            value={{
+                draggedItem, setDraggedItem,
+                itemList, setItemList,
+                sourceItem, setSourceItem,
+                indexItem, setIndexItem,
+            }}>
             {children}
         </DragContext.Provider>
     );

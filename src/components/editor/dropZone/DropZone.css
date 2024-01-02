@@ -33,6 +33,9 @@
 .dropZone-element {
     display: flex;
     cursor: grab;
+    flex: 1;
+    height: 100%;
+
 }
 
 .dropZone-element:active {
