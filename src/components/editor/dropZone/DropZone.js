@@ -46,7 +46,11 @@ const DropZone = () => {
         setItems(modifiedItems);
     }, [itemList]);
 
-    const onResize = (index) => (event, { size }) => {
+    // const onResize = (event, { element, size, handle }) => {
+    //     setSize({ width: size.width, height: size.height });
+    // };
+
+    const onResize = (index) => (event, { element, size, handle }) => {
         setSize({ width: size.width, height: size.height })
         const updatedItems = items.map((item, idx) => {
             if (idx === index) {
@@ -66,14 +70,30 @@ const DropZone = () => {
                     const Component = componentMap[item.type];
                     const style = {
                         gridColumnStart: item.gridColumn,
-                        gridColumnEnd: item.gridColumn + item.sizeWidth,
+                        width: item.width,
+                        height: item.height,
+                        // gridColumnEnd: item.gridColumn + item.sizeWidth,
                         gridRowStart: item.gridRow,
-                        gridRowEnd: item.gridRow + item.sizeHeight,
+                        // gridRowEnd: item.gridRow + item.sizeHeight,
                     };
                     return (
-                        <div style={style} draggable onDragStart={(e) => handleDragStart(e, item, 'dropzone', index)}>
-                            <Resizable className="box" onResize={() => onResize(index)} resizeHandles={['sw', 'se', 'nw', 'ne', 'w', 'e', 'n', 's']}>
-                                <Component {...item.props} draggable onDragStart={(e) => handleDragStart(e, item, 'dropzone', index)} />
+                        // <div key={index} width={item.width} height={item.height} draggable={item.draggable} onDragStart={(e) => handleDragStart(e, item, 'dropzone', index)}>
+                        // <Resizable className="box" onResize={onResize} resizeHandles={['sw', 'se', 'nw', 'ne', 'w', 'e', 'n', 's']}>
+                        //     <Component style={{ width: item.width + 'px', height: item.height + 'px', background: 'lightgrey' }} {...item.props} />
+                        // </Resizable>
+                        // </div>
+                        <div key={index}  style={style} draggable={item.draggable} onDragStart={(e) => handleDragStart(e, item, 'dropzone', index)}>
+                            <Resizable
+                                className="box"
+                                style={style}
+                                width={item.width}
+                                height={item.height}
+                                onResize={onResize(index)}
+                                resizeHandles={['sw', 'se', 'nw', 'ne', 'w', 'e', 'n', 's']} // Spécifiez ici les poignées de redimensionnement
+                            >
+                                <div style={{ width: item.width + 'px', height: item.height + 'px', background: 'lightgrey' }}>
+                                    <Component style={{ width: '100%', height: '100%', background: 'lightgrey' }} {...item.props} />
+                                </div>
                             </Resizable>
                         </div>
                     );
@@ -113,7 +133,6 @@ export default DropZone;
 //                 style={{ width: size.width + 'px', height: size.height + 'px', background: 'lightgrey' }}
 //             >
 //                 <p>Contenu redimensionnable</p>
-//                 <button onClick={onResetClick} style={{ 'marginTop': '10px' }}>Reset this element's width/height</button>
 //             </div>
 //         </Resizable>
 //         // <ResizableBox
