@@ -14,6 +14,11 @@
     overflow: auto;
 }
 
+.box {
+    background-color: #999;
+    border: 1px solid black;
+}
+
 .dropZone:empty:before {
     content: "Glissez et déposez des éléments ici";
     color: #999;

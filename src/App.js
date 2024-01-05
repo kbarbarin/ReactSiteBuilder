@@ -16,6 +16,9 @@ const items = [
     },
     sizeWidth: 3,
     sizeHeight: 1,
+    width: 300,
+    height: 100,
+    isDraggable: true
   },
   {
     type: 'Card', props: {
@@ -24,6 +27,7 @@ const items = [
     },
     sizeWidth: 3,
     sizeHeight: 6,
+    isDraggable: true
   },
   {
     type: 'InputField', props: {
@@ -32,6 +36,7 @@ const items = [
     },
     sizeWidth: 7,
     sizeHeight: 2,
+    isDraggable: true
   },
   {
     type: 'Modal', props: {
@@ -40,6 +45,7 @@ const items = [
     },
     sizeWidth: 10,
     sizeHeight: 10,
+    isDraggable: true
   },
   {
     type: 'ProgressBar', props: {
@@ -49,6 +55,7 @@ const items = [
     },
     sizeWidth: 6,
     sizeHeight: 1,
+    isDraggable: true
   },
   {
     type: 'Slider', props: {
@@ -61,6 +68,7 @@ const items = [
     },
     sizeWidth: 6,
     sizeHeight: 3,
+    isDraggable: true
   }
   // ... Ajoutez d'autres éléments ici
 ];
