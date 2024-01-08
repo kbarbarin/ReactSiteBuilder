@@ -8,6 +8,7 @@ export const DragProvider = ({ children }) => {
     const [sourceItem, setSourceItem] = useState(null);
     const [indexItem, setIndexItem] = useState(null);
     const [itemList, setItemList] = useState([]);
+    const [startDragPosition, setStartDragPosition] = useState({x: 0, y: 0});
 
     return (
         <DragContext.Provider
@@ -16,6 +17,7 @@ export const DragProvider = ({ children }) => {
                 itemList, setItemList,
                 sourceItem, setSourceItem,
                 indexItem, setIndexItem,
+                startDragPosition, setStartDragPosition
             }}>
             {children}
         </DragContext.Provider>

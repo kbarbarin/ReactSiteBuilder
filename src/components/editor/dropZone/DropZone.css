@@ -6,33 +6,41 @@
     border-radius: 8px;
     margin: 20px;
     background-color: #f8f8f8;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
+    /* display: flex; */
+    /* flex-direction: column; */
+    /* align-items: center; */
+    /* justify-content: center; */
     position: relative;
     overflow: auto;
 }
 
-.box {
+/* .box {
     background-color: #999;
     border: 1px solid black;
+} */
+.hover-handles .react-resizable-handle {
+  display: none;
 }
-
+.hover-handles:hover .react-resizable-handle {
+  display: block;
+}
 .dropZone:empty:before {
     content: "Glissez et déposez des éléments ici";
     color: #999;
-    text-align: center;
+    display: flex;
+    align-content: center;
+    justify-content: center;
+    padding-top: 30%;
 }
 
 .dropZone:not(:empty) {
     border-style: solid;
     background-color: #fff;
-    display: grid;
+    /* display: grid;
     grid-template-columns: repeat(30, 1fr);
     grid-template-rows: repeat(30, 1fr);
     grid-column-gap: 0px;
-    grid-row-gap: 0px;
+    grid-row-gap: 0px; */
 }
 
 .dropZone-element {

@@ -1,12 +1,11 @@
 // src/components/DropZone.js
-import React, { useState, useContext, useEffect } from 'react';
+import React, { useContext, useRef } from 'react';
 import { Resizable } from 'react-resizable';
 import "react-resizable/css/styles.css";
 
 import { DragContext } from '../../../contexts/DragContext';
 import useDrop from '../../../hooks/useDrop';
 import useDrag from '../../../hooks/useDrag';
-// import useMouseEvents from '../../../hooks/useMouseEvents';
 
 import Button from '../../common/Button/Button';
 import Card from '../../common/Card/Card';
@@ -14,6 +13,7 @@ import InputField from '../../common/InputField/InputField';
 import Modal from '../../common/Modal/Modal';
 import Slider from '../../common/Slider/Slider';
 import ProgressBar from '../../common/ProgressBar/ProgressBar';
+import EditableText from '../../common/EditableText/EditableText';
 
 import './DropZone.css'
 
@@ -23,76 +23,94 @@ const componentMap = {
     InputField,
     Modal,
     Slider,
-    ProgressBar
+    ProgressBar,
+    EditableText
 };
+
+const BORDER_SENSITIVITY = 10;
 
 const DropZone = () => {
     const { handleDrop, handleDragOver } = useDrop();
-    const { itemList } = useContext(DragContext);
+    const { itemList, setItemList } = useContext(DragContext);
     const { handleDragStart } = useDrag();
-    const [items, setItems] = useState(itemList);
-    const [size, setSize] = useState({ width: 200, height: 200 });
+    const resizableRef = useRef(null);
 
-    useEffect(() => {
-        const modifiedItems = itemList.map(item => {
-            const newProps = { ...item.props };
+    const onResize = (index) => (event, {node, size }) => {
+        if (!size)
+            return;
 
-            delete newProps.style;
-            delete newProps.styleTitle;
-
-            return { ...item, props: newProps };
-        });
-
-        setItems(modifiedItems);
-    }, [itemList]);
-
-    // const onResize = (event, { element, size, handle }) => {
-    //     setSize({ width: size.width, height: size.height });
-    // };
-
-    const onResize = (index) => (event, { element, size, handle }) => {
-        setSize({ width: size.width, height: size.height })
-        const updatedItems = items.map((item, idx) => {
+        const updatedItems = itemList.map((item, idx) => {
             if (idx === index) {
                 return { ...item, width: size.width, height: size.height };
             }
             return item;
         });
 
-        // Mettre à jour l'état avec le nouveau tableau
-        setItems(updatedItems);
+        setItemList(updatedItems);
+    };
+
+    const updateDrag = (e, index, value) => {
+        const updatedItems = itemList.map((item, idx) => {
+            if (idx === index) {
+                const { nearLeftEdge, nearRightEdge, nearTopEdge, nearBottomEdge } = isMouseOnBorder(e);
+                if (nearLeftEdge || nearRightEdge || nearTopEdge || nearBottomEdge) {
+                    return { ...item, isDraggable: value };
+                }
+            }
+            return item;
+        });
+
+        setItemList(updatedItems);
+    };
+
+    const isMouseOnBorder = (e) => {
+            const { left, top, width, height } = e.target.getBoundingClientRect();
+            const mouseX = e.clientX;
+            const mouseY = e.clientY;
+            const distanceFromLeft = mouseX - left;
+            const distanceFromTop = mouseY - top;
+            const distanceFromRight = left + width - mouseX;
+            const distanceFromBottom = top + height - mouseY;
+            const nearLeftEdge = distanceFromLeft < BORDER_SENSITIVITY;
+            const nearRightEdge = distanceFromRight < BORDER_SENSITIVITY;
+            const nearTopEdge = distanceFromTop < BORDER_SENSITIVITY;
+            const nearBottomEdge = distanceFromBottom < BORDER_SENSITIVITY;
+
+            return { nearLeftEdge, nearRightEdge, nearTopEdge, nearBottomEdge };
     };
 
     return (
         <div className='dropZone' onDrop={(e) => handleDrop(e, 'dropzone')} onDragOver={(e) => handleDragOver(e)}>
-            {items.length > 0 && (
-                items.map((item, index) => {
+            {itemList.length > 0 && (
+                itemList.map((item, index) => {
                     const Component = componentMap[item.type];
                     const style = {
-                        gridColumnStart: item.gridColumn,
+                        position: 'absolute',
+                        left: item.left,
+                        top: item.top,
                         width: item.width,
                         height: item.height,
-                        // gridColumnEnd: item.gridColumn + item.sizeWidth,
-                        gridRowStart: item.gridRow,
-                        // gridRowEnd: item.gridRow + item.sizeHeight,
                     };
                     return (
-                        // <div key={index} width={item.width} height={item.height} draggable={item.draggable} onDragStart={(e) => handleDragStart(e, item, 'dropzone', index)}>
-                        // <Resizable className="box" onResize={onResize} resizeHandles={['sw', 'se', 'nw', 'ne', 'w', 'e', 'n', 's']}>
-                        //     <Component style={{ width: item.width + 'px', height: item.height + 'px', background: 'lightgrey' }} {...item.props} />
-                        // </Resizable>
-                        // </div>
-                        <div key={index}  style={style} draggable={item.draggable} onDragStart={(e) => handleDragStart(e, item, 'dropzone', index)}>
+                        <div
+                            key={index}
+                            ref={resizableRef}
+                            style={style}
+                            draggable={item.isDraggable}
+                            onMouseDown={(e) => { updateDrag(e, index, false) }}
+                            onMouseUp={(e) => { updateDrag(e, index, true) }}
+                            onMouseLeave={(e) => { updateDrag(e, index, true) }}
+                            onDragStart={(e) => handleDragStart(e, item, 'dropzone', index)}
+                        >
                             <Resizable
-                                className="box"
-                                style={style}
+                                className="box hover-handles"
                                 width={item.width}
                                 height={item.height}
                                 onResize={onResize(index)}
                                 resizeHandles={['sw', 'se', 'nw', 'ne', 'w', 'e', 'n', 's']} // Spécifiez ici les poignées de redimensionnement
                             >
-                                <div style={{ width: item.width + 'px', height: item.height + 'px', background: 'lightgrey' }}>
-                                    <Component style={{ width: '100%', height: '100%', background: 'lightgrey' }} {...item.props} />
+                                <div style={{ width: item.width + 'px', height: item.height + 'px' }}>
+                                    <Component style={{ width: '100%', height: '100%' }} {...item.props} />
                                 </div>
                             </Resizable>
                         </div>
@@ -103,48 +121,3 @@ const DropZone = () => {
     );
 };
 export default DropZone;
-
-// import React, { useState } from 'react';
-// import { Resizable, ResizableBox } from 'react-resizable';
-// import "react-resizable/css/styles.css";
-// import './DropZone.css'
-
-// const DropZone = () => {
-//     const [size, setSize] = useState({ width: 200, height: 200 });
-
-//     const onResize = (event, { element, size, handle }) => {
-//         setSize({ width: size.width, height: size.height });
-//     };
-
-//     const onResetClick = () => {
-//         setSize({ width: 300, height: 300 });
-//     };
-
-//     return (
-//         // <div className='dropZone'>
-//         <Resizable
-//             className="box"
-//             width={size.width}
-//             height={size.height}
-//             onResize={onResize}
-//             resizeHandles={['sw', 'se', 'nw', 'ne', 'w', 'e', 'n', 's']} // Spécifiez ici les poignées de redimensionnement
-//         >
-//             <div
-//                 style={{ width: size.width + 'px', height: size.height + 'px', background: 'lightgrey' }}
-//             >
-//                 <p>Contenu redimensionnable</p>
-//             </div>
-//         </Resizable>
-//         // <ResizableBox
-//         //     className="custom-box box"
-//         //     width={200}
-//         //     height={200}
-//         //     handle={<span className="custom-handle custom-handle-se" />}
-//         //     handleSize={[8, 8]}>
-//         //     <span className="text">{"<ResizableBox> with custom overflow style & handle in SE corner."}</span>
-//         //   </ResizableBox>
-//         // </div>
-//     );
-// };
-
-// export default DropZone;

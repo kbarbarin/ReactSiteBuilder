@@ -9,33 +9,36 @@ import './styles/App.css'
 
 const items = [
   {
+    type: 'EditableText', props: {
+      children: 'Text'
+    },
+    width: 60,
+    height: 30,
+  },
+  {
     type: 'Button', props: {
-      style: {padding: "10px 20px", margin: "5px"},
-      styleTitle: {fontSize: "1rem"},
       children: <p>Button</p>,
     },
-    sizeWidth: 3,
-    sizeHeight: 1,
-    width: 300,
-    height: 100,
+    left: 0,
+    top: 0,
+    width: 150,
+    height: 50,
     isDraggable: true
   },
   {
     type: 'Card', props: {
-      style: {padding: "10px 20px", margin: "5px"},
       children: <p>Card</p>,
     },
-    sizeWidth: 3,
-    sizeHeight: 6,
+    width: 200,
+    height: 60,
     isDraggable: true
   },
   {
     type: 'InputField', props: {
-      style: {margin: "5px"},
       placeholder: "InputField",
     },
-    sizeWidth: 7,
-    sizeHeight: 2,
+    width: 70,
+    height: 25,
     isDraggable: true
   },
   {
@@ -43,8 +46,8 @@ const items = [
       title: 'Modal',
       children: <p>Modal content</p>
     },
-    sizeWidth: 10,
-    sizeHeight: 10,
+    width: 1000,
+    height: 1000,
     isDraggable: true
   },
   {
@@ -53,8 +56,8 @@ const items = [
       duration: 2,
       showText: true
     },
-    sizeWidth: 6,
-    sizeHeight: 1,
+    width: 600,
+    height: 10,
     isDraggable: true
   },
   {
@@ -66,8 +69,8 @@ const items = [
       label: "Sélectionnez une valeur :",
       onChange: () => console.log('change')
     },
-    sizeWidth: 6,
-    sizeHeight: 3,
+    width: 60,
+    height: 30,
     isDraggable: true
   }
   // ... Ajoutez d'autres éléments ici
