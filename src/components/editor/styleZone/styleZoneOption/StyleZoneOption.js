@@ -60,21 +60,21 @@ const ButtonOption = ({ item, setItemList }) => {
                 />
             </div>
             <div className="styleZoneOption-element">
-                <p>Couleur du texte:</p>
-                <input
-                    type="color"
-                    name="color"
-                    value={item.props?.styleTitle?.color || '#ffffff'}
-                    onChange={handleStyleTitleChange}
-                />
-            </div>
-            <div className="styleZoneOption-element">
                 <p>Border Radius du bouton:</p>
                 <input
                     type="text"
                     name="borderRadius"
                     value={item.props?.style?.borderRadius || '5px'}
                     onChange={handleStyleChange}
+                />
+            </div>
+            <div className="styleZoneOption-element">
+                <p>Couleur du texte:</p>
+                <input
+                    type="color"
+                    name="color"
+                    value={item.props?.styleTitle?.color || '#ffffff'}
+                    onChange={handleStyleTitleChange}
                 />
             </div>
             <div className="styleZoneOption-element">
