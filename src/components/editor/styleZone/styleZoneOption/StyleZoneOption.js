@@ -10,7 +10,7 @@ const TextOption = ({ item, setItemList }) => {
     return (
         <div className="styleZoneOption">
             <div className="styleZoneOption-element">
-                <label htmlFor="textColor">Couleur du texte:</label>
+                <p>Couleur du texte:</p>
                 <input
                     type="color"
                     id="textColor"
@@ -20,7 +20,7 @@ const TextOption = ({ item, setItemList }) => {
                 />
             </div>
             <div className="styleZoneOption-element">
-                <label htmlFor="fontSize">Taille de la police:</label>
+                <p>Taille de la police:</p>
                 <input
                     type="text"
                     id="fontSize"
@@ -51,36 +51,50 @@ const ButtonOption = ({ item, setItemList }) => {
     return (
         <div className="styleZoneOption">
             <div className="styleZoneOption-element">
-                <label htmlFor="backgroundColor">Couleur de fond:</label>
+                <p>Couleur de fond:</p>
                 <input
                     type="color"
-                    id="backgroundColor"
                     name="backgroundColor"
                     value={item.props?.style?.backgroundColor || '#1e6ca6'}
                     onChange={handleStyleChange}
                 />
             </div>
             <div className="styleZoneOption-element">
-                <label htmlFor="textColor">Couleur du texte:</label>
+                <p>Couleur du texte:</p>
                 <input
                     type="color"
-                    id="color"
                     name="color"
                     value={item.props?.styleTitle?.color || '#ffffff'}
                     onChange={handleStyleTitleChange}
                 />
             </div>
             <div className="styleZoneOption-element">
-                <label htmlFor="textColor">Texte du bouton:</label>
+                <p>Border Radius du bouton:</p>
                 <input
                     type="text"
-                    id="text"
+                    name="borderRadius"
+                    value={item.props?.style?.borderRadius || '5px'}
+                    onChange={handleStyleChange}
+                />
+            </div>
+            <div className="styleZoneOption-element">
+                <p>Taille du texte:</p>
+                <input
+                    type="text"
+                    name="fontSize"
+                    value={item.props?.styleTitle?.fontSize || '0.5rem'}
+                    onChange={handleStyleTitleChange}
+                />
+            </div>
+            <div className="styleZoneOption-element">
+                <p>Texte du bouton:</p>
+                <input
+                    type="text"
                     name="text"
                     value={item.props?.children}
                     onChange={handleChildrenChange}
                 />
             </div>
-
         </div>
     );
 };
@@ -96,7 +110,7 @@ const CardOption = ({ item, setItemList }) => {
     return (
         <div className="styleZoneOption">
             <div className="styleZoneOption-element">
-                <label htmlFor="boxShadow">Ombre portée:</label>
+                <p>Ombre portée:</p>
                 <input
                     type="text"
                     id="boxShadow"
@@ -106,7 +120,7 @@ const CardOption = ({ item, setItemList }) => {
                 />
             </div>
             <div className="styleZoneOption-element">
-                <label htmlFor="margin">Marge:</label>
+                <p>Marge:</p>
                 <input
                     type="number"
                     id="margin"

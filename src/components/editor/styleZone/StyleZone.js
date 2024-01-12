@@ -33,7 +33,7 @@ export default function StyleZone () {
     }, []);
 
     return (
-        <div className={`styleZone ${!isClosing ? 'disappear' : ''}`}>
+        <div className={`styleZone ${isClosing ? 'disappear' : ''}`}>
             <RenderOptions item={itemList[showStyle]} setItemList={setItemList}/>
         </div>
     );
