@@ -4,6 +4,7 @@ import { DragContext, DragProvider } from './contexts/DragContext';
 import DraggableZone from './components/editor/draggableZone/DraggableZone';
 import DropZone from './components/editor/dropZone/DropZone';
 import DeleteZone from './components/editor/deleteZone/DeleteZone';
+import StyleZone from './components/editor/styleZone/StyleZone';
 
 import './styles/App.css'
 
@@ -17,7 +18,7 @@ const items = [
   },
   {
     type: 'Button', props: {
-      children: <p>Button</p>,
+      children: "Button",
     },
     left: 0,
     top: 0,
@@ -27,7 +28,6 @@ const items = [
   },
   {
     type: 'Card', props: {
-      children: <p>Card</p>,
     },
     width: 200,
     height: 60,
@@ -80,20 +80,21 @@ const items = [
 const App = () => {
 
   const DragContent = () => {
-    const { draggedItem, sourceItem } = useContext(DragContext)
+    const { draggedItem, sourceItem, showStyle } = useContext(DragContext)
     const [showDelete, setShowDelete] = useState(false);
 
     useEffect(() => {
       if (draggedItem && sourceItem === "dropzone")
-        setShowDelete(true)
+        setShowDelete(true);
       else if (showDelete)
-        setShowDelete(false)
+        setShowDelete(false);
     }, [draggedItem, sourceItem, showDelete])
 
     return (
       <div className='app-container'>
         {showDelete ? <DeleteZone /> : <DraggableZone items={items} />}
         <DropZone />
+        {showStyle !== -2 && <StyleZone />}
       </div>
     )
   }

@@ -1,0 +1,14 @@
+.styleZoneOption {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    align-items: stretch;
+    align-content: stretch;
+    gap: 20px;
+}
+
+/* .styleZoneOption-element {
+    border: 1px solid black;
+    padding: 100px; */
+/* } */

@@ -7,6 +7,7 @@ export const DragProvider = ({ children }) => {
     const [draggedItem, setDraggedItem] = useState(null);
     const [sourceItem, setSourceItem] = useState(null);
     const [indexItem, setIndexItem] = useState(null);
+    const [showStyle, setShowStyle] = useState(false);
     const [itemList, setItemList] = useState([]);
     const [startDragPosition, setStartDragPosition] = useState({x: 0, y: 0});
 
@@ -17,6 +18,7 @@ export const DragProvider = ({ children }) => {
                 itemList, setItemList,
                 sourceItem, setSourceItem,
                 indexItem, setIndexItem,
+                showStyle, setShowStyle,
                 startDragPosition, setStartDragPosition
             }}>
             {children}

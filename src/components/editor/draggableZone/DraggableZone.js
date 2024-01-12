@@ -77,11 +77,11 @@ const draggableItems = [
   ];
 
 const DraggableZone = ({items}) => {
-    const { itemList } = useContext(DragContext);
+    const { itemList, setShowStyle } = useContext(DragContext);
     const { handleDragStart } = useDrag();
 
     return (
-        <div className='draggableZone'>
+        <div className='draggableZone' onClick={() => setShowStyle(-1)}>
             <div>
                 {draggableItems.map((item, index) => {
                     const Component = componentMap[item.type];

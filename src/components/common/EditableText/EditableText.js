@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 
+import './EditableText.css'
+
 const EditableText = (props) => {
     const [isEditing, setIsEditing] = useState(false);
     const [text, setText] = useState(props.children);
@@ -17,17 +19,18 @@ const EditableText = (props) => {
     };
 
     return (
-        <div className="editable-text">
+        <div style={props?.style} className={isEditing ? "editable-input" : "editable-text"}>
             {isEditing ? (
-                <input 
-                    type="text" 
-                    value={text} 
-                    onChange={handleInputChange} 
+                <input
+                    type="text"
+                    style={props?.style}
+                    value={text}
+                    onChange={handleInputChange}
                     onBlur={handleInputBlur}
                     autoFocus
                 />
             ) : (
-                <div onClick={handleTextClick}>
+                <div style={props?.style} onClick={handleTextClick}>
                     {text}
                 </div>
             )}

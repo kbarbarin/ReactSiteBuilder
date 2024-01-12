@@ -1,0 +1,35 @@
+.styleZone {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 20%;
+    background-color: #f0f0f0;
+    overflow-y: auto;
+    /* Pour le défilement si beaucoup de composants */
+    padding: 10px;
+    animation: slideInFromRight 0.3s ease-out forwards;
+}
+
+.disappear {
+    animation: slideOutToRight 0.5s ease-out forwards;
+}
+
+@keyframes slideInFromRight {
+    0% {
+        transform: translateX(100%);
+    }
+
+    100% {
+        transform: translateX(0);
+    }
+}
+
+@keyframes slideOutToRight {
+    0% {
+        transform: translateX(0);
+    }
+
+    100% {
+        transform: translateX(100%);
+    }
+}

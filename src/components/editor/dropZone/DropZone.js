@@ -31,11 +31,11 @@ const BORDER_SENSITIVITY = 10;
 
 const DropZone = () => {
     const { handleDrop, handleDragOver } = useDrop();
-    const { itemList, setItemList } = useContext(DragContext);
+    const { itemList, setItemList, showStyle, setShowStyle } = useContext(DragContext);
     const { handleDragStart } = useDrag();
     const resizableRef = useRef(null);
 
-    const onResize = (index) => (event, {node, size }) => {
+    const onResize = (index) => (event, { node, size }) => {
         if (!size)
             return;
 
@@ -64,23 +64,27 @@ const DropZone = () => {
     };
 
     const isMouseOnBorder = (e) => {
-            const { left, top, width, height } = e.target.getBoundingClientRect();
-            const mouseX = e.clientX;
-            const mouseY = e.clientY;
-            const distanceFromLeft = mouseX - left;
-            const distanceFromTop = mouseY - top;
-            const distanceFromRight = left + width - mouseX;
-            const distanceFromBottom = top + height - mouseY;
-            const nearLeftEdge = distanceFromLeft < BORDER_SENSITIVITY;
-            const nearRightEdge = distanceFromRight < BORDER_SENSITIVITY;
-            const nearTopEdge = distanceFromTop < BORDER_SENSITIVITY;
-            const nearBottomEdge = distanceFromBottom < BORDER_SENSITIVITY;
+        const { left, top, width, height } = e.target.getBoundingClientRect();
+        const mouseX = e.clientX;
+        const mouseY = e.clientY;
+        const distanceFromLeft = mouseX - left;
+        const distanceFromTop = mouseY - top;
+        const distanceFromRight = left + width - mouseX;
+        const distanceFromBottom = top + height - mouseY;
+        const nearLeftEdge = distanceFromLeft < BORDER_SENSITIVITY;
+        const nearRightEdge = distanceFromRight < BORDER_SENSITIVITY;
+        const nearTopEdge = distanceFromTop < BORDER_SENSITIVITY;
+        const nearBottomEdge = distanceFromBottom < BORDER_SENSITIVITY;
 
-            return { nearLeftEdge, nearRightEdge, nearTopEdge, nearBottomEdge };
+        return { nearLeftEdge, nearRightEdge, nearTopEdge, nearBottomEdge };
     };
 
     return (
-        <div className='dropZone' onDrop={(e) => handleDrop(e, 'dropzone')} onDragOver={(e) => handleDragOver(e)}>
+        <div
+            className='dropZone'
+            onDrop={(e) => handleDrop(e, 'dropzone')}
+            onDragOver={(e) => handleDragOver(e)}
+        >
             {itemList.length > 0 && (
                 itemList.map((item, index) => {
                     const Component = componentMap[item.type];
@@ -97,20 +101,22 @@ const DropZone = () => {
                             ref={resizableRef}
                             style={style}
                             draggable={item.isDraggable}
+                            onClick={() => setShowStyle(index)}
                             onMouseDown={(e) => { updateDrag(e, index, false) }}
                             onMouseUp={(e) => { updateDrag(e, index, true) }}
                             onMouseLeave={(e) => { updateDrag(e, index, true) }}
                             onDragStart={(e) => handleDragStart(e, item, 'dropzone', index)}
                         >
                             <Resizable
-                                className="box hover-handles"
+                                className={showStyle === index ? "box" : "box hover-handles"}
                                 width={item.width}
                                 height={item.height}
+                                minConstraints={[50, 30]}
                                 onResize={onResize(index)}
                                 resizeHandles={['sw', 'se', 'nw', 'ne', 'w', 'e', 'n', 's']} // Spécifiez ici les poignées de redimensionnement
                             >
                                 <div style={{ width: item.width + 'px', height: item.height + 'px' }}>
-                                    <Component style={{ width: '100%', height: '100%' }} {...item.props} />
+                                <Component style={{ width: '100%', height: '100%', ...item.props?.style }} {...item.props} />
                                 </div>
                             </Resizable>
                         </div>
