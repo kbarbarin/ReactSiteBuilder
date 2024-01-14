@@ -29,6 +29,61 @@ const TextOption = ({ item, setItemList }) => {
                     onChange={handleStyleChange}
                 />
             </div>
+            <div className="styleZoneOption-element">
+                <p>Alignement du texte:</p>
+                <select
+                    name="textAlign"
+                    value={item.props?.style?.textAlign || 'left'}
+                    onChange={handleStyleChange}
+                >
+                    <option value="left">Gauche</option>
+                    <option value="center">Centré</option>
+                    <option value="right">Droite</option>
+                </select>
+            </div>
+            <div className="styleZoneOption-element">
+                <p>Poids de la police:</p>
+                <input
+                    type="number"
+                    id="fontWeight"
+                    name="fontWeight"
+                    value={item.props?.style?.fontWeight || '400'}
+                    onChange={handleStyleChange}
+                />
+            </div>
+            <div className="styleZoneOption-element">
+                <p>Style de la police:</p>
+                <select
+                    name="fontStyle"
+                    value={item.props?.style?.fontStyle || 'normal'}
+                    onChange={handleStyleChange}
+                >
+                    <option value="normal">Normal</option>
+                    <option value="italic">Italique</option>
+                </select>
+            </div>
+            <div className="styleZoneOption-element">
+                <p>D\u00e9coration du texte:</p>
+                <select
+                    name="textDecoration"
+                    value={item.props?.style?.textDecoration || 'none'}
+                    onChange={handleStyleChange}
+                >
+                    <option value="none">Aucun</option>
+                    <option value="underline">Soulign\u00e9</option>
+                    <option value="line-through">Barr\u00e9</option>
+                </select>
+            </div>
+            <div className="styleZoneOption-element">
+                <p>Espacement des lettres:</p>
+                <input
+                    type="text"
+                    id="letterSpacing"
+                    name="letterSpacing"
+                    value={item.props?.style?.letterSpacing || 'normal'}
+                    onChange={handleStyleChange}
+                />
+            </div>
         </div>
     );
 };
