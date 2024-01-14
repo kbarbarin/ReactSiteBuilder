@@ -1,12 +1,20 @@
-import { useCallback } from 'react';
+import { useCallback, useState } from 'react';
 import './StyleZoneOption.css'
 
 const TextOption = ({ item, setItemList }) => {
+    const [fontSize, setFontSize] = useState(item.props?.style?.fontSize?.match(/\d+/) || 16);
+    const [fontUnit, setFontUnit] = useState(item.props?.style?.fontSize?.replace(/[0-9]/g, '') || 'px');
+
     const handleStyleChange = useCallback((e) => {
         const updatedStyle = { ...item.props.style, [e.target.name]: e.target.value };
         setItemList(prevItems => prevItems.map(it => it === item ? { ...item, props: { ...item.props, style: updatedStyle } } : it));
     }, [item, setItemList]);
 
+    const handleFontSizeChange = useCallback((e) => {
+        setFontSize(e.target.value);
+        const updatedStyle = { ...item.props.style, fontSize: `${e.target.value}${fontUnit}` };
+        setItemList(prevItems => prevItems.map(it => it === item ? { ...item, props: { ...item.props, style: updatedStyle } } : it));
+    }, [item, setItemList, fontUnit]);
     const handleFontUnitChange = useCallback((e) => {
         setFontUnit(e.target.value);
         const updatedStyle = { ...item.props.style, fontSize: `${fontSize}${e.target.value}` };
@@ -26,25 +34,25 @@ const TextOption = ({ item, setItemList }) => {
                 />
             </div>
             <div className="styleZoneOption-element">
-            <p>Taille de la police:</p>
-            <input
-                type="number"
-                id="fontSize"
-                name="fontSize"
-                value={fontSize}
-                onChange={handleFontSizeChange}
-            />
-            <select
-                name="fontUnit"
-                value={fontUnit}
-                onChange={handleFontUnitChange}
-            >
-                <option value="px">px</option>
-                <option value="rem">rem</option>
-                <option value="em">em</option>
-                <option value="%">%</option>
-            </select>
-        </div>
+                <p>Taille de la police:</p>
+                <input
+                    type="number"
+                    id="fontSize"
+                    name="fontSize"
+                    value={fontSize}
+                    onChange={handleFontSizeChange}
+                />
+                <select
+                    name="fontUnit"
+                    value={fontUnit}
+                    onChange={handleFontUnitChange}
+                >
+                    <option value="px">px</option>
+                    <option value="rem">rem</option>
+                    <option value="em">em</option>
+                    <option value="%">%</option>
+                </select>
+            </div>
 
             <div className="styleZoneOption-element">
                 <p>Alignement du texte:</p>
