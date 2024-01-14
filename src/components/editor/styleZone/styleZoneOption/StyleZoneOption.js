@@ -53,7 +53,6 @@ const TextOption = ({ item, setItemList }) => {
                     <option value="%">%</option>
                 </select>
             </div>
-
             <div className="styleZoneOption-element">
                 <p>Alignement du texte:</p>
                 <select
@@ -124,6 +123,9 @@ const TextOption = ({ item, setItemList }) => {
 
 
 const ButtonOption = ({ item, setItemList }) => {
+    const [fontSize, setFontSize] = useState(item.props?.style?.fontSize?.match(/\d+/) || 16);
+    const [fontUnit, setFontUnit] = useState(item.props?.style?.fontSize?.replace(/[0-9]/g, '') || 'px');
+
     const handleStyleChange = useCallback((e) => {
         setItemList(prevItems => prevItems.map(it => it === item ? { ...item, props: { ...item.props, style: { ...item.props.style, [e.target.name]: e.target.value } } } : it));
     }, [item, setItemList]);
@@ -131,6 +133,18 @@ const ButtonOption = ({ item, setItemList }) => {
     const handleStyleTitleChange = useCallback((e) => {
         setItemList(prevItems => prevItems.map(it => it === item ? { ...item, props: { ...item.props, styleTitle: { ...item.props.styleTitle, [e.target.name]: e.target.value } } } : it));
     }, [item, setItemList]);
+
+    const handleFontSizeChange = useCallback((e) => {
+        setFontSize(e.target.value);
+        const updatedStyle = { ...item.props.styleTitle, fontSize: `${e.target.value}${fontUnit}` };
+        setItemList(prevItems => prevItems.map(it => it === item ? { ...item, props: { ...item.props, styleTitle: updatedStyle } } : it));
+    }, [item, setItemList, fontUnit]);
+
+    const handleFontUnitChange = useCallback((e) => {
+        setFontUnit(e.target.value);
+        const updatedStyle = { ...item.props.styleTitle, fontSize: `${fontSize}${e.target.value}` };
+        setItemList(prevItems => prevItems.map(it => it === item ? { ...item, props: { ...item.props, styleTitle: updatedStyle } } : it));
+    }, [item, setItemList, fontSize]);
 
     const handleChildrenChange = useCallback((e) => {
         setItemList(prevItems => prevItems.map(it => it === item ? { ...item, props: { ...item.props, children: e.target.value } } : it));
@@ -166,13 +180,24 @@ const ButtonOption = ({ item, setItemList }) => {
                 />
             </div>
             <div className="styleZoneOption-element">
-                <p>Taille du texte:</p>
+                <p>Taille de la police:</p>
                 <input
-                    type="text"
+                    type="number"
+                    id="fontSize"
                     name="fontSize"
-                    value={item.props?.styleTitle?.fontSize || '0.5rem'}
-                    onChange={handleStyleTitleChange}
+                    value={fontSize}
+                    onChange={handleFontSizeChange}
                 />
+                <select
+                    name="fontUnit"
+                    value={fontUnit}
+                    onChange={handleFontUnitChange}
+                >
+                    <option value="px">px</option>
+                    <option value="rem">rem</option>
+                    <option value="em">em</option>
+                    <option value="%">%</option>
+                </select>
             </div>
             <div className="styleZoneOption-element">
                 <p>Texte du bouton:</p>
