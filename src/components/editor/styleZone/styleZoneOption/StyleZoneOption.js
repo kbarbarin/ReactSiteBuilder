@@ -43,13 +43,21 @@ const TextOption = ({ item, setItemList }) => {
             </div>
             <div className="styleZoneOption-element">
                 <p>Poids de la police:</p>
-                <input
-                    type="number"
-                    id="fontWeight"
+                <select
                     name="fontWeight"
                     value={item.props?.style?.fontWeight || '400'}
                     onChange={handleStyleChange}
-                />
+                >
+                    <option value="100">100</option>
+                    <option value="200">200</option>
+                    <option value="300">300</option>
+                    <option value="400">400</option>
+                    <option value="500">500</option>
+                    <option value="600">600</option>
+                    <option value="700">700</option>
+                    <option value="800">800</option>
+                    <option value="900">900</option>
+                </select>
             </div>
             <div className="styleZoneOption-element">
                 <p>Style de la police:</p>
@@ -63,15 +71,15 @@ const TextOption = ({ item, setItemList }) => {
                 </select>
             </div>
             <div className="styleZoneOption-element">
-                <p>D\u00e9coration du texte:</p>
+                <p>Décoration du texte:</p>
                 <select
                     name="textDecoration"
                     value={item.props?.style?.textDecoration || 'none'}
                     onChange={handleStyleChange}
                 >
                     <option value="none">Aucun</option>
-                    <option value="underline">Soulign\u00e9</option>
-                    <option value="line-through">Barr\u00e9</option>
+                    <option value="underline">Souligné</option>
+                    <option value="line-through">Barré</option>
                 </select>
             </div>
             <div className="styleZoneOption-element">
