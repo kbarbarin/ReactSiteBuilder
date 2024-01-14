@@ -95,6 +95,102 @@ const ButtonOption = ({ item, setItemList }) => {
                     onChange={handleChildrenChange}
                 />
             </div>
+            <div className="styleZoneOption-element">
+                <p>Opacité du bouton:</p>
+                <input
+                    type="range"
+                    min="0"
+                    max="1"
+                    step="0.1"
+                    name="opacity"
+                    value={item.props?.style?.opacity || '1'}
+                    onChange={handleStyleChange}
+                />
+            </div>
+            <div className="styleZoneOption-element">
+                <p>Largeur du bouton:</p>
+                <input
+                    type="text"
+                    name="width"
+                    value={item.props?.style?.width || 'auto'}
+                    onChange={handleStyleChange}
+                />
+                <p>Hauteur du bouton:</p>
+                <input
+                    type="text"
+                    name="height"
+                    value={item.props?.style?.height || 'auto'}
+                    onChange={handleStyleChange}
+                />
+            </div>
+            <div className="styleZoneOption-element">
+                <p>Ombre portée:</p>
+                <input
+                    type="text"
+                    name="boxShadow"
+                    value={item.props?.style?.boxShadow || ''}
+                    onChange={handleStyleChange}
+                />
+            </div>
+            <div className="styleZoneOption-element">
+                <p>Couleur de la bordure:</p>
+                <input
+                    type="color"
+                    name="borderColor"
+                    value={item.props?.style?.borderColor || '#000000'}
+                    onChange={handleStyleChange}
+                />
+                <p>Style de la bordure:</p>
+                <select
+                    name="borderStyle"
+                    value={item.props?.style?.borderStyle || 'solid'}
+                    onChange={handleStyleChange}
+                >
+                    <option value="solid">Solid</option>
+                    <option value="dotted">Dotted</option>
+                    <option value="dashed">Dashed</option>
+                    <option value="none">None</option>
+                </select>
+                <p>Épaisseur de la bordure:</p>
+                <input
+                    type="text"
+                    name="borderWidth"
+                    value={item.props?.style?.borderWidth || '1px'}
+                    onChange={handleStyleChange}
+                />
+
+            </div>
+            <div className="styleZoneOption-element">
+                <p>Espacement intérieur (Padding):</p>
+                <input
+                    type="text"
+                    name="padding"
+                    value={item.props?.style?.padding || '10px'}
+                    onChange={handleStyleChange}
+                />
+            </div>
+            <div className="styleZoneOption-element">
+                <p>Couleur de fond au survol:</p>
+                <input
+                    type="color"
+                    name="hoverBackgroundColor"
+                    value={item.props?.style?.hoverBackgroundColor || '#1e90ff'}
+                    onChange={handleStyleChange}
+                />
+            </div>
+            <div className="styleZoneOption-element">
+                <p>Curseur:</p>
+                <select
+                    name="cursor"
+                    value={item.props?.style?.cursor || 'pointer'}
+                    onChange={handleStyleChange}
+                >
+                    <option value="pointer">Pointer</option>
+                    <option value="default">Default</option>
+                    <option value="not-allowed">Not-allowed</option>
+                </select>
+            </div>
+
         </div>
     );
 };
