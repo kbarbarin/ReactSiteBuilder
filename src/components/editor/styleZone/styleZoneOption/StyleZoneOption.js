@@ -7,6 +7,12 @@ const TextOption = ({ item, setItemList }) => {
         setItemList(prevItems => prevItems.map(it => it === item ? { ...item, props: { ...item.props, style: updatedStyle } } : it));
     }, [item, setItemList]);
 
+    const handleFontUnitChange = useCallback((e) => {
+        setFontUnit(e.target.value);
+        const updatedStyle = { ...item.props.style, fontSize: `${fontSize}${e.target.value}` };
+        setItemList(prevItems => prevItems.map(it => it === item ? { ...item, props: { ...item.props, style: updatedStyle } } : it));
+    }, [item, setItemList, fontSize]);
+
     return (
         <div className="styleZoneOption">
             <div className="styleZoneOption-element">
@@ -20,15 +26,26 @@ const TextOption = ({ item, setItemList }) => {
                 />
             </div>
             <div className="styleZoneOption-element">
-                <p>Taille de la police:</p>
-                <input
-                    type="text"
-                    id="fontSize"
-                    name="fontSize"
-                    value={item.props?.style?.fontSize || '1.5rem'}
-                    onChange={handleStyleChange}
-                />
-            </div>
+            <p>Taille de la police:</p>
+            <input
+                type="number"
+                id="fontSize"
+                name="fontSize"
+                value={fontSize}
+                onChange={handleFontSizeChange}
+            />
+            <select
+                name="fontUnit"
+                value={fontUnit}
+                onChange={handleFontUnitChange}
+            >
+                <option value="px">px</option>
+                <option value="rem">rem</option>
+                <option value="em">em</option>
+                <option value="%">%</option>
+            </select>
+        </div>
+
             <div className="styleZoneOption-element">
                 <p>Alignement du texte:</p>
                 <select
