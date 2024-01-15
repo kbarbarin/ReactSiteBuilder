@@ -126,9 +126,22 @@ const ButtonOption = ({ item, setItemList }) => {
     const [fontSize, setFontSize] = useState(item.props?.style?.fontSize?.match(/\d+/) || 16);
     const [fontUnit, setFontUnit] = useState(item.props?.style?.fontSize?.replace(/[0-9]/g, '') || 'px');
 
-    const handleStyleChange = useCallback((e) => {
-        setItemList(prevItems => prevItems.map(it => it === item ? { ...item, props: { ...item.props, style: { ...item.props.style, [e.target.name]: e.target.value } } } : it));
+    const handleStyleChange = useCallback((key, value) => {
+        setItemList(prevItems =>
+            prevItems.map(it =>
+                it === item
+                    ? {
+                          ...item,
+                          props: {
+                              ...item.props,
+                              style: { ...item.props.style, [key]: value || '' }, // Ajout de la valeur par défaut
+                          },
+                      }
+                    : it
+            )
+        );
     }, [item, setItemList]);
+
 
     const handleStyleTitleChange = useCallback((e) => {
         setItemList(prevItems => prevItems.map(it => it === item ? { ...item, props: { ...item.props, styleTitle: { ...item.props.styleTitle, [e.target.name]: e.target.value } } } : it));
@@ -252,32 +265,45 @@ const ButtonOption = ({ item, setItemList }) => {
                     <label>Horizontal Offset:</label>
                     <input
                         type="text"
-                        value={hOffset || '5px'}
-                        onChange={(e) => handleShadowChange('hOffset', e.target.value)}
+                        name="boxShadowH"
+                        value={item.props?.style?.boxShadowH || '5px'}
+                        onChange={(e) => handleStyleChange('boxShadowH', e.target.value)}
                     />
                 </div>
                 <div className="styleZoneOption-element">
                     <label>Vertical Offset:</label>
                     <input
                         type="text"
-                        value={vOffset || '5px'}
-                        onChange={(e) => handleShadowChange('vOffset', e.target.value)}
+                        name="boxShadowV"
+                        value={item.props?.style?.boxShadowV || '5px'}
+                        onChange={(e) => handleStyleChange('boxShadowV', e.target.value)}
                     />
                 </div>
                 <div className="styleZoneOption-element">
                     <label>Blur:</label>
                     <input
                         type="text"
-                        value={blur || '15px'}
-                        onChange={(e) => handleShadowChange('blur', e.target.value)}
+                        name="boxShadowBlur"
+                        value={item.props?.style?.boxShadowBlur || '15px'}
+                        onChange={(e) => handleStyleChange('boxShadowBlur', e.target.value)}
+                    />
+                </div>
+                <div className="styleZoneOption-element">
+                    <label>Spread:</label>
+                    <input
+                        type="text"
+                        name="boxShadowSpread"
+                        value={item.props?.style?.boxShadowSpread || '5px'}
+                        onChange={(e) => handleStyleChange('boxShadowSpread', e.target.value)}
                     />
                 </div>
                 <div className="styleZoneOption-element">
                     <label>Color:</label>
                     <input
                         type="color"
-                        value={color || '#000000'}
-                        onChange={(e) => handleShadowChange('color', e.target.value)}
+                        name="boxShadowColor"
+                        value={item.props?.style?.boxShadowColor || '#000000'}
+                        onChange={(e) => handleStyleChange('boxShadowColor', e.target.value)}
                     />
                 </div>
             </div>
