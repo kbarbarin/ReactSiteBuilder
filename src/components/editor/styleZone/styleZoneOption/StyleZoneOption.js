@@ -150,6 +150,16 @@ const ButtonOption = ({ item, setItemList }) => {
         setItemList(prevItems => prevItems.map(it => it === item ? { ...item, props: { ...item.props, children: e.target.value } } : it));
     }, [item, setItemList]);
 
+    const handleShadowChange = (property, value) => {
+        const updatedShadow = { ...item.props.style?.boxShadow, [property]: value };
+        const updatedStyle = { ...item.props.style, boxShadow: updatedShadow };
+
+        setItemList(prevItems => prevItems.map(it => it === item ? { ...item, props: { ...item.props, style: updatedStyle } } : it));
+    };
+
+    const { boxShadow } = item.props.style || {};
+    const { hOffset, vOffset, blur, color } = boxShadow || {};
+
     return (
         <div className="styleZoneOption">
             <div className="styleZoneOption-element">
@@ -236,14 +246,40 @@ const ButtonOption = ({ item, setItemList }) => {
                     onChange={handleStyleChange}
                 />
             </div>
-            <div className="styleZoneOption-element">
-                <p>Ombre portée:</p>
-                <input
-                    type="text"
-                    name="boxShadow"
-                    value={item.props?.style?.boxShadow || ''}
-                    onChange={handleStyleChange}
-                />
+            <div className="styleZoneOption-section">
+                <p>Box Shadow:</p>
+                <div className="styleZoneOption-element">
+                    <label>Horizontal Offset:</label>
+                    <input
+                        type="text"
+                        value={hOffset || '5px'}
+                        onChange={(e) => handleShadowChange('hOffset', e.target.value)}
+                    />
+                </div>
+                <div className="styleZoneOption-element">
+                    <label>Vertical Offset:</label>
+                    <input
+                        type="text"
+                        value={vOffset || '5px'}
+                        onChange={(e) => handleShadowChange('vOffset', e.target.value)}
+                    />
+                </div>
+                <div className="styleZoneOption-element">
+                    <label>Blur:</label>
+                    <input
+                        type="text"
+                        value={blur || '15px'}
+                        onChange={(e) => handleShadowChange('blur', e.target.value)}
+                    />
+                </div>
+                <div className="styleZoneOption-element">
+                    <label>Color:</label>
+                    <input
+                        type="color"
+                        value={color || '#000000'}
+                        onChange={(e) => handleShadowChange('color', e.target.value)}
+                    />
+                </div>
             </div>
             <div className="styleZoneOption-element">
                 <p>Couleur de la bordure:</p>

@@ -31,3 +31,15 @@
     display: block;
     margin-bottom: 5px;
 }
+
+.styleZoneOption-section {
+    margin-top: 10px;
+    border: 1px solid #ccc;
+    padding: 10px;
+    border-radius: 5px;
+  }
+  
+  .styleZoneOption-section p {
+    font-weight: bold;
+    margin-bottom: 8px;
+  }
