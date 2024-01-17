@@ -14,6 +14,10 @@ import Modal from '../../common/Modal/Modal';
 import Slider from '../../common/Slider/Slider';
 import ProgressBar from '../../common/ProgressBar/ProgressBar';
 import EditableText from '../../common/EditableText/EditableText';
+import Title from '../../common/Title/Title';
+import Image from '../../common/Image/Image';
+import Navbar from '../../common/Navbar/Navbar';
+import Footer from '../../common/Footer/Footer';
 
 import './DropZone.css'
 
@@ -24,7 +28,11 @@ const componentMap = {
     Modal,
     Slider,
     ProgressBar,
-    EditableText
+    EditableText,
+    Title,
+    Image,
+    Navbar,
+    Footer,  
 };
 
 const BORDER_SENSITIVITY = 10;

@@ -13,8 +13,38 @@ const items = [
     type: 'EditableText', props: {
       children: 'Text'
     },
-    width: 60,
-    height: 30,
+    width: 80,
+    height: 50,
+  },
+  {
+    type: 'Title', props: {
+      children: "Title",
+      level: 2,
+    },
+    width: 100,
+    height: 70,
+  },
+  {
+    type: 'Image', props: {
+      src: "https://via.placeholder.com/350x150.jpg",
+      alt: "Description de l'image"
+    },
+    width: 100,
+    height: 100,
+  },
+  {
+    type: 'Navbar', props: {
+
+    },
+    width: 500,
+    height: 100,
+  },
+  {
+    type: 'Footer', props: {
+
+    },
+    width: 500,
+    height: 100,
   },
   {
     type: 'Button', props: {

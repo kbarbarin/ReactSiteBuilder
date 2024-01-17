@@ -163,16 +163,6 @@ const ButtonOption = ({ item, setItemList }) => {
         setItemList(prevItems => prevItems.map(it => it === item ? { ...item, props: { ...item.props, children: e.target.value } } : it));
     }, [item, setItemList]);
 
-    const handleShadowChange = (property, value) => {
-        const updatedShadow = { ...item.props.style?.boxShadow, [property]: value };
-        const updatedStyle = { ...item.props.style, boxShadow: updatedShadow };
-
-        setItemList(prevItems => prevItems.map(it => it === item ? { ...item, props: { ...item.props, style: updatedStyle } } : it));
-    };
-
-    const { boxShadow } = item.props.style || {};
-    const { hOffset, vOffset, blur, color } = boxShadow || {};
-
     return (
         <div className="styleZoneOption">
             <div className="styleZoneOption-element">

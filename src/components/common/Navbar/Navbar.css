@@ -1,0 +1,16 @@
+.navbar-component {
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+  }
+  
+  .navbar-component a {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+  }
+  
+  .navbar-options {
+    margin-top: 10px;
+  }
+  
