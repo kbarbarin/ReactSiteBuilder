@@ -49,7 +49,7 @@ const draggableItems = [
   },
   {
     type: 'Image', props: {
-      src: "https://via.placeholder.com/350x150chemin-vers-votre-image.jpg",
+      src: "https://via.placeholder.com/350x150.jpg",
       alt: "Description de l'image"
     },
     width: 100,
