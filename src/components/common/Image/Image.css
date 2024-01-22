@@ -1,16 +1,9 @@
-.image-component {
-  }
-  
-  .image-component img {
+  .image-component {
     width: 100%;
     height: auto;
-    /* display: block; */
     margin: 10px 0;
   }
-  
+
   .image-options {
     margin-top: 10px;
   }
-  
-  /* Ajoutez d'autres styles selon vos besoins */
-  

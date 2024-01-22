@@ -2,12 +2,9 @@ import React from 'react';
 import './Image.css';
 
 const Image = (props) => {
-
-  return (
-    <div className={`image-component ${props?.className}`} style={props?.style}>
-      <img src={props?.src} alt={props?.alt || 'image'} style={{ width: props?.width, height: props?.height }} />
-    </div>
-  );
+    return (
+        <img src={props?.src} className={`image-component ${props?.className}`} alt={props?.alt || 'image'} style={{ width: props?.width, height: props?.height }} />
+    );
 };
 
 export default Image;
