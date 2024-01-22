@@ -52,8 +52,8 @@ const draggableItems = [
       src: "https://via.placeholder.com/350x150.jpg",
       alt: "Description de l'image"
     },
-    width: 100,
-    height: 100,
+    width: 350,
+    height: 150,
   },
   {
     type: 'Navbar', props: {
