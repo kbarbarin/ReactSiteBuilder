@@ -43,19 +43,33 @@ const DropZone = () => {
     const { handleDragStart } = useDrag();
     const resizableRef = useRef(null);
 
-    const onResize = (index) => (event, { node, size }) => {
-        if (!size)
-            return;
-
+    const onResize = (index) => (event, { node, size, handle }) => {
+        if (!size) return;
+    
         const updatedItems = itemList.map((item, idx) => {
             if (idx === index) {
-                return { ...item, width: size.width, height: size.height };
+                const updatedItem = { ...item };
+    
+                // Mise à jour des dimensions
+                updatedItem.width = size.width;
+                updatedItem.height = size.height;
+    
+                // Ajustement de `left` et `top` en fonction de la poignée de redimensionnement
+                if (handle.includes('w')) {
+                    updatedItem.left = item.left + (item.width - size.width);
+                }
+                if (handle.includes('n')) {
+                    updatedItem.top = item.top + (item.height - size.height);
+                }
+    
+                return updatedItem;
             }
             return item;
         });
-
+    
         setItemList(updatedItems);
     };
+    
 
     const updateDrag = (e, index, value) => {
         const updatedItems = itemList.map((item, idx) => {

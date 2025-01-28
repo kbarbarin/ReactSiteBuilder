@@ -6,7 +6,7 @@ import DropZone from './components/editor/dropZone/DropZone';
 import DeleteZone from './components/editor/deleteZone/DeleteZone';
 import StyleZone from './components/editor/styleZone/StyleZone';
 
-import './styles/App.css'
+import './styles/App.css';
 
 const items = [
   {
