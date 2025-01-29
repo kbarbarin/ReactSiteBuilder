@@ -54,7 +54,7 @@ const DropZone = () => {
                 updatedItem.width = size.width;
                 updatedItem.height = size.height;
     
-                // Ajustement de `left` et `top` en fonction de la poignée de redimensionnement
+                // repositionnement de l'item
                 if (handle.includes('w')) {
                     updatedItem.left = item.left + (item.width - size.width);
                 }
