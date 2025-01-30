@@ -57,7 +57,7 @@ const DraggableZone = ({ items }) => {
   };
 
   return (
-    <div className='draggableZone' onClick={() => setShowStyle(-1)}>
+    <div className='draggableZone'>
       {Object.entries(groupedComponents).map(([category, components]) => (
         <div className='draggableZone-category' key={category}>
           <div
