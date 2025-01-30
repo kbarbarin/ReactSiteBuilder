@@ -1,25 +1,81 @@
 .draggableZone {
     display: flex;
     flex-direction: column;
-    justify-content: space-between;
-    width: 20%;
-    background-color: #f0f0f0;
-    overflow-y: auto; /* Pour le défilement si beaucoup de composants */
-    padding: 10px;
+    justify-content: flex-start;
+    width: 250px;
+    background-color: #ffffff;
+    border-right: 1px solid #e0e0e0;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
 }
 
+/* Styles pour les catégories (listes déroulantes) */
+.draggableZone-category {
+    border-bottom: 1px solid #e0e0e0;
+    overflow: hidden;
+}
+
+.draggableZone-category-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px;
+    background-color: #f9f9f9;
+    cursor: pointer;
+    font-weight: bold;
+    color: #333;
+    transition: background-color 0.3s ease;
+}
+
+.draggableZone-category-header:hover {
+    background-color: #f0f0f0;
+}
+
+.draggableZone-category-content {
+    padding: 10px;
+    background-color: #ffffff;
+}
+
+/* Styles pour les éléments draggables */
 .draggableZone-element {
     cursor: grab;
+    background-color: #f9f9f9;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 8px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.draggableZone-element:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .draggableZone-element:active {
     cursor: grabbing;
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
+/* Bouton d'export */
 .draggableZone-export {
-    flex: 0;
-    padding: 10px 20px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    margin-top: 20px;
+    padding: 12px 24px;
+    background-color: #3498db;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.draggableZone-export:hover {
+    background-color: #2980b9;
+}
+
+.draggableZone-export:active {
+    background-color: #1c5980;
 }

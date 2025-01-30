@@ -80,29 +80,29 @@ const items = [
     height: 1000,
     isDraggable: true
   },
-  {
-    type: 'ProgressBar', props: {
-      percentage: 50,
-      duration: 2,
-      showText: true
-    },
-    width: 600,
-    height: 10,
-    isDraggable: true
-  },
-  {
-    type: 'Slider', props: {
-      min: 0,
-      max: 200,
-      step: 5,
-      defaultValue: 100,
-      label: "Sélectionnez une valeur :",
-      onChange: () => console.log('change')
-    },
-    width: 60,
-    height: 30,
-    isDraggable: true
-  }
+  // {
+  //   type: 'ProgressBar', props: {
+  //     percentage: 50,
+  //     duration: 2,
+  //     showText: true
+  //   },
+  //   width: 600,
+  //   height: 10,
+  //   isDraggable: true
+  // },
+  // {
+  //   type: 'Slider', props: {
+  //     min: 0,
+  //     max: 200,
+  //     step: 5,
+  //     defaultValue: 100,
+  //     label: "Sélectionnez une valeur :",
+  //     onChange: () => console.log('change')
+  //   },
+  //   width: 60,
+  //   height: 30,
+  //   isDraggable: true
+  // }
   // ... Ajoutez d'autres éléments ici
 ];
 
