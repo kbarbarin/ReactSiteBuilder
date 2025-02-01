@@ -7,6 +7,7 @@
     border-right: 1px solid #e0e0e0;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     overflow-y: auto;
+    height: 100vh; /* Prendre toute la hauteur de l'écran */
 }
 
 /* Styles pour les catégories (listes déroulantes) */
@@ -32,19 +33,25 @@
 }
 
 .draggableZone-category-content {
-    padding: 10px;
     background-color: #ffffff;
 }
 
 /* Styles pour les éléments draggables */
 .draggableZone-element {
+    height: 48px;
+    padding: 5px;
     cursor: grab;
     background-color: #f9f9f9;
-    border: 1px solid #e0e0e0;
-    border-radius: 8px;
-    padding: 10px;
-    margin-bottom: 8px;
+    border-bottom: 1px solid #e0e0e0;
     transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.draggableZone-element:first-child {
+    border-top: 1px solid #e0e0e0;
+}
+
+.draggableZone-element:last-child {
+    border-bottom: 0px;
 }
 
 .draggableZone-element:hover {
@@ -60,7 +67,10 @@
 
 /* Bouton d'export */
 .draggableZone-export {
-    margin-top: 20px;
+    max-height: 30px;
+    margin-left: 20px; /* Espacement à gauche */
+    margin-right: 20px; /* Espacement à droite */
+    margin-bottom: 20px; /* Espacement en bas */
     padding: 12px 24px;
     background-color: #3498db;
     color: #ffffff;
@@ -78,4 +88,30 @@
 
 .draggableZone-export:active {
     background-color: #1c5980;
+}
+
+.draggableZone-clear {
+    max-height: 30px;
+    margin-top: auto; /* Pousse le bouton vers le bas */
+    margin-left: 20px; /* Espacement à gauche */
+    margin-right: 20px; /* Espacement à droite */
+    margin-bottom: 10px; /* Espacement en bas */
+    padding: 12px 24px;
+
+    background-color: #db3437;
+    color: #ffffff;
+    border: none;
+    border-radius: 8px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+}
+
+.draggableZone-clear:hover {
+    background-color: #a02527;
+}
+
+.draggableZone-clear:active {
+    background-color: #5d1516;
 }

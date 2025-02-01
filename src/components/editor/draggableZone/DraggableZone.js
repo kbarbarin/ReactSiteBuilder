@@ -44,7 +44,7 @@ const groupedComponents = {
 };
 
 const DraggableZone = ({ items }) => {
-  const { itemList, setShowStyle } = useContext(DragContext);
+  const { itemList, setItemList } = useContext(DragContext);
   const { handleDragStart } = useDrag();
   const [openCategories, setOpenCategories] = useState({});
 
@@ -55,6 +55,10 @@ const DraggableZone = ({ items }) => {
       [category]: !prev[category],
     }));
   };
+
+  const clearPage = () => {
+    setItemList([]);
+  }
 
   return (
     <div className='draggableZone'>
@@ -97,6 +101,13 @@ const DraggableZone = ({ items }) => {
           )}
         </div>
       ))}
+      <Button
+        className='draggableZone-clear'
+        styleTitle={{ fontSize: '1.2rem' }}
+        onClick={() => clearPage()}
+      >
+        Effacer la page
+      </Button>
       <Button
         className='draggableZone-export'
         styleTitle={{ fontSize: '1.2rem' }}
