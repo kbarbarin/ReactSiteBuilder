@@ -122,7 +122,9 @@ const App = () => {
 
     return (
       <div className='app-container'>
-        {showDelete ? <DeleteZone /> : <DraggableZone items={items} />}
+        <div className='app-container-right'>
+          {showDelete ? <DeleteZone /> : <DraggableZone items={items} />}
+        </div>
         <DropZone />
         {showStyle !== -2 && <StyleZone />}
       </div>

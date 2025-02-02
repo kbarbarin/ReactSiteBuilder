@@ -2,12 +2,11 @@
     display: flex;
     flex-direction: column;
     justify-content: flex-start;
-    width: 250px;
     background-color: #ffffff;
     border-right: 1px solid #e0e0e0;
     box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
     overflow-y: auto;
-    height: 100vh; /* Prendre toute la hauteur de l'écran */
+    height: 100vh;
 }
 
 /* Styles pour les catégories (listes déroulantes) */

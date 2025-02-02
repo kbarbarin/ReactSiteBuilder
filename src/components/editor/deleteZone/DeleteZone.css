@@ -1,6 +1,7 @@
 /* Dans votre fichier CSS pour DeleteZone */
 .deleteZone {
-    width: 20%;
+    display: flex;
+    height: 94vh;
     border: 2px dashed red;
     border-radius: 8px;
     display: flex;

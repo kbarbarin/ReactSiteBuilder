@@ -11,3 +11,7 @@ body {
     display: flex;
     height: 100vh;
 }
+
+.app-container-right {
+    width: 18%;
+}
