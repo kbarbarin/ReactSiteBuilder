@@ -101,15 +101,19 @@ const DraggableZone = ({ items }) => {
           )}
         </div>
       ))}
+      {itemList.length ?
+        <Button
+          className={'draggableZone-clear'}
+          styleTitle={{ fontSize: '1.2rem' }}
+          onClick={() => clearPage()}
+        >
+          Effacer la page
+        </Button>
+        :
+        <></>
+      }
       <Button
-        className='draggableZone-clear'
-        styleTitle={{ fontSize: '1.2rem' }}
-        onClick={() => clearPage()}
-      >
-        Effacer la page
-      </Button>
-      <Button
-        className='draggableZone-export'
+        className={`draggableZone-export ${itemList.length === 0 && 'draggableZone-export-is-alone'}`}
         styleTitle={{ fontSize: '1.2rem' }}
         onClick={() => main(itemList)}
       >

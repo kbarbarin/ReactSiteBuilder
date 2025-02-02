@@ -1,13 +1,15 @@
 import React from "react";
 import './Button.css';
 
-export default function Button(props) {
-
+export default function Button({ className, styleTitle, children, ...props }) {
     return (
-        <div className={`button ${props?.className || ""}`} style={props?.style} onClick={props?.onClick}>
-            <h1 className={`button-title`} style={props?.styleTitle}>
-                {props?.children}
+        <button
+            className={`button ${className || ""}`}
+            {...props} // Passer tous les autres props non destructurés
+        >
+            <h1 className="button-title" style={styleTitle}>
+                {children}
             </h1>
-        </div>
+        </button>
     );
 }
