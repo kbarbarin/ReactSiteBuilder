@@ -36,6 +36,7 @@
 .dropZone:not(:empty) {
     border-style: solid;
     background-color: #fff;
+    border-radius: 0px;
     /* display: grid;
     grid-template-columns: repeat(30, 1fr);
     grid-template-rows: repeat(30, 1fr);
